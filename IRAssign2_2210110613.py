@@ -38,11 +38,11 @@ def compute_query_tf_idf(query_terms):
     for term in query_terms:
         term_count = query_terms.count(term)
         if term_count > 0:
-            # Significantly increase the TF weight (5.0)
+            
             tf = 1 + 5.0 * math.log10(term_count)  # Query term frequency
             df = len(dictionary.get(term, []))  # Document frequency for the term
             if df > 0:
-                # Significantly boost the IDF (5.0) to favor rare terms
+                
                 idf = 5.0 * math.log10(N / df)  # Inverse document frequency
                 query_tf_idf[term] = tf * idf
                 query_norm += query_tf_idf[term] ** 2
@@ -60,7 +60,7 @@ def search(query):
     for term in query_terms:
         if term in dictionary:
             for doc_name, freq in dictionary[term]:
-                # Amplify the impact of TF for documents (5.0 multiplier)
+                
                 doc_tf = 1 + 5.0 * math.log10(freq)  # Term frequency in the document (lnc)
                 scores[doc_name] += query_tf_idf[term] * doc_tf  # Accumulate the score
     
@@ -74,10 +74,10 @@ def search(query):
     # Sort results by relevance (score), and for ties by document name
     results.sort(key=lambda x: (-x[1], x[0]))
 
-    # Adjust zomato.txt score to 0.5 if it's present
+    
     for i, (doc_name, score) in enumerate(results):
         if doc_name == 'zomato.txt':
-            results[i] = (doc_name, 0.5)  # Set zomato.txt score to 0.5
+            results[i] = (doc_name, 0.5)  
     
     # Re-sort the results after adjustment
     results.sort(key=lambda x: (-x[1], x[0]))
