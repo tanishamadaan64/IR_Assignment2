@@ -3,7 +3,7 @@ import os
 import re
 from collections import defaultdict, Counter
 
-# Data structures
+
 dictionary = defaultdict(list)  # term -> list of (doc_name, term_freq)
 doc_lengths = defaultdict(float)  # doc_name -> length
 N = 0  # Total number of documents
