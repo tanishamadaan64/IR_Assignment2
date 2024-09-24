@@ -93,7 +93,7 @@ def index_corpus(corpus_dir):
                 content = f.read()
                 index_document(filename, content)
 
-# Path to your corpus directory
+# Path to corpus directory
 corpus_dir = r"C:\Users\91941\Desktop\Corpus"
 index_corpus(corpus_dir)
 
